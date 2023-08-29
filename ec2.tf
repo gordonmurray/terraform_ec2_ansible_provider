@@ -3,9 +3,8 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-*arm64*"]
   }
-
 
   filter {
     name   = "virtualization-type"
@@ -14,6 +13,7 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+
 
 resource "aws_instance" "webserver" {
   ami                     = data.aws_ami.ubuntu.id

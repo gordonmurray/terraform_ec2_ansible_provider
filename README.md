@@ -2,6 +2,8 @@
 
 A small example of using the [Ansible Provider for Terraform](https://registry.terraform.io/providers/ansible/ansible/latest/docs)
 
+This isn't intended for production use, just to show how the Ansible provider works.
+
 ### How to use this project
 
 Tested using Terraform v1.5.6 and Ansible v2.14.2.

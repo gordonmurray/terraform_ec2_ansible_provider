@@ -17,7 +17,5 @@ resource "ansible_playbook" "playbook" {
     ansible_python_interpreter   = "/usr/bin/python3"
   }
 
-  depends_on = [
-    aws_instance.webserver
-  ]
+  depends_on = [aws_security_group_rule.webserver_ssh]
 }
