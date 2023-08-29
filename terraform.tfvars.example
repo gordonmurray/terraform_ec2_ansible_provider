@@ -1,0 +1,3 @@
+vpc_id = "vpc-xxxxx"
+subnet = "subnet-xxxxx"
+self_ip_address = "255.255.255.255"
