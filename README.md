@@ -1,7 +1,30 @@
-# terraform_ec2_ansible_provider
-A small example of using the Ansible Provider for Terraform
+# Ansible provider for Terraform
 
+A small example of using the [Ansible Provider for Terraform](https://registry.terraform.io/providers/ansible/ansible/latest/docs)
 
+### How to use this project
+
+Tested using Terraform v1.5.6 and Ansible v2.14.2.
+
+Once you have cloned the repository locally, create a file in the same directory called `terraform.tfvars` with the following content:
+
+```
+vpc_id          = "vpc-03d17d83d27b3cc07" # The VPC ID you'd like to deploy in to
+
+subnet          = "subnet-073f3acd3126e42ec"  # A subnet within the VPC to use
+
+self_ip_address = "52.209.110.81" # Your public IP address, you can optionally SSH in to the resulting webserver
+```
+
+One you have your variables set, initialize and run Terraform using:
+
+```
+terraform init
+
+terraform plan
+
+terraform apply
+```
 
 
 ### Useful debugging tips
