@@ -12,8 +12,8 @@ Once you have cloned the repository locally, create a file in the same directory
 
 ```
 # terraform.tfvars
-vpc_id          = "vpc-03d17d83d27b3cc07" # The VPC ID you'd like to deploy in to
-subnet          = "subnet-073f3acd3126e42ec"  # A subnet within the VPC to use
+vpc_id          = "vpc-xxxxx" # The VPC ID you'd like to deploy in to
+subnet          = "subnet-xxxxx"  # A subnet within the VPC to use
 self_ip_address = "123.123.123.123" # Your public IP address so you can SSH in to the resulting webserver
 ```
 
