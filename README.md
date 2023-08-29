@@ -26,7 +26,6 @@ terraform plan
 terraform apply
 ```
 
-
 ### Useful debugging tips
 
 Enable Ansible log - this will help you see any Ansible specific errors
@@ -40,4 +39,26 @@ Test running the Ansible Playbook outside of Ansible with:
 
 ```
 ansible-playbook playbook.yml -e "ansible_host=IP_ADDRESS" -e "ansible_ssh_private_key_file=/path/to/file.pem" --user ubuntu
+```
+
+### Esimated cost
+
+```
+Project: gordonmurray/terraform_ec2_ansible_provider
+
+ Name                                                  Monthly Qty  Unit   Monthly Cost
+
+ aws_instance.webserver
+ ├─ Instance usage (Linux/UNIX, on-demand, t4g.small)          730  hours        $13.43
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                       10  GB            $1.10
+
+ OVERALL TOTAL                                                                   $14.53
+──────────────────────────────────
+8 cloud resources were detected:
+∙ 1 was estimated, it includes usage-based costs, see https://infracost.io/usage-file
+∙ 7 were free:
+  ∙ 5 x aws_security_group_rule
+  ∙ 1 x aws_key_pair
+  ∙ 1 x aws_security_group
 ```
