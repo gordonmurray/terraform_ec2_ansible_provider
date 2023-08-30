@@ -4,6 +4,40 @@ A small example of using Terraform to create an EC2 instance and using the [Ansi
 
 This isn't intended for production use, just to show how the Ansible provider works.
 
+The main parts to point out are in the file called `ansible.tf`.
+
+The following resource creates a host that Ansible can use and its populated with group called 'webserver' and the IP of the EC2 instance that Terraform will create.
+
+```
+resource "ansible_host" "host" {
+  name   = aws_instance.webserver.public_ip
+  groups = ["webserver"]
+}
+```
+
+The playbook resource is below. It includes the Ansible playbook YML file to run and passes some extra vars to facilitate the connection. I'd highly recommend setting the `ignore_playbook_failure` parameter to `true`. If there is an issue in your Ansible playbook, Terraform will continue its usual steps and you can debug the Ansible playbook separately. If you omit the value or set it to false, you'll get unhelpful errors returned from the Provider that don't help debug the problem.
+
+```
+resource "ansible_playbook" "playbook" {
+  playbook                = "./playbook.yml"
+  name                    = aws_instance.webserver.public_ip
+  replayable              = true
+  ignore_playbook_failure = true
+
+  extra_vars = {
+    example_variable             = "Some variable"
+    ansible_hostname             = aws_instance.webserver.public_ip
+    ansible_user                 = "ubuntu"
+    ansible_ssh_private_key_file = "~/.ssh/id_rsa"
+    ansible_python_interpreter   = "/usr/bin/python3"
+  }
+
+  depends_on = [aws_security_group_rule.webserver_ssh]
+}
+```
+
+
+
 ### How to use this project
 
 Tested using Terraform v1.5.6 and Ansible v2.14.2.
