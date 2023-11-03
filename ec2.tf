@@ -22,6 +22,7 @@ resource "aws_instance" "webserver" {
   subnet_id               = var.subnet
   vpc_security_group_ids  = [aws_security_group.webserver.id]
   disable_api_termination = true
+  count                   = 3
 
   root_block_device {
     delete_on_termination = true
